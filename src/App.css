@@ -1,0 +1,11 @@
+.App-logo {
+    height: 10vmin;
+    pointer-events: none;
+    float: left;
+    background-color: #282c34;
+}
+
+.App-header {
+    height: 70px;
+    display: flex;
+}

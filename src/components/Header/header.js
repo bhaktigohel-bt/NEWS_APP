@@ -1,11 +1,12 @@
 import React from 'react';
 import logo from '../../logo.svg';
 import { Tabs, Tab } from 'react-bootstrap';
-import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from './headerActions';
+
 class Header extends React.Component {
+
     constructor() {
         super();
         this.state = {
@@ -14,14 +15,17 @@ class Header extends React.Component {
     }
 
     HandleRoute(path) {
-        this.setState({ route: path });
-        // this.props.baseActions.actions.setpath(path);
-        this.props.history.push(path);
+        this.props.setpath(path);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            route: nextProps.route
+        });
     }
 
     render() {
         let { route } = this.state;
-        console.log('props', this.props)
         return ( <
             div className = "App-header" >
             <
@@ -40,7 +44,7 @@ class Header extends React.Component {
             title = "EveryThing" >
             EveryThing <
             /Tab> <
-            Tab eventKey = "TopHeadlines"
+            Tab eventKey = "top-headlines"
             title = "Top-Head-Lines" >
             Top - Head - Lines <
             /Tab> <
@@ -49,29 +53,24 @@ class Header extends React.Component {
             Sources <
             /Tab> < /
             Tabs > < /
-
             div > < /
             div >
-
         )
     }
 }
 
 
-const mapStateToProps = (state, props) => {
+function mapStateToProps(state) {
     return {
-        route: state.header.route
+        route: state.headerReducer.route,
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return {
-        baseActions: bindActionCreators({
-            actions
-        }, dispatch),
-    }
-};
+    return {...bindActionCreators({...actions }, dispatch) }
 
-Header = withRouter(Header);
-Header = connect(mapStateToProps, mapDispatchToProps)(Header)
+}
+
+Header = connect(mapStateToProps, mapDispatchToProps)(Header);
+
 export { Header };

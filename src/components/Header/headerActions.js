@@ -2,10 +2,13 @@ import { asyncActionNames, buildAsyncActions } from '../common/ActionCreator';
 const path = asyncActionNames("PATH");
 const pathActions = buildAsyncActions(path);
 
-let setpath = function(path) {
+const request = asyncActionNames("REQUEST");
+const requestActions = buildAsyncActions(request);
+
+function setpath(path) {
     return function(dispatch) {
-        dispatch(pathActions.success, path);
+        dispatch(requestActions.success([]));
+        dispatch(pathActions.success(path));
     }
 }
-
 export { setpath };

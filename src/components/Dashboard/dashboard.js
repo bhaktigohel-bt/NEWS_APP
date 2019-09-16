@@ -3,18 +3,20 @@ import { Header } from '../Header';
 import { bindActionCreators } from 'redux';
 import * as actions from './dashBoardActions';
 import { connect } from 'react-redux';
+import { Spinner } from 'react-bootstrap';
 class DashBoard extends React.Component {
     constructor() {
         super();
         this.state = {
+            error: '',
             route: "",
+            loader: false,
             articleData: []
         }
     }
 
     // this can be used when performance is a bottleneck.
     shouldComponentUpdate(nextProps) {
-        console.log('shouldComponentUpdate', nextProps.articleData);
         if (this.state.route !== nextProps.route) {
             this.props.newsApi(nextProps.route);
         }
@@ -23,16 +25,18 @@ class DashBoard extends React.Component {
 
 
     componentWillReceiveProps(nextProps) {
-        console.log('componentWillUpdate', nextProps.articleData);
+
         this.setState({
             route: nextProps.route,
-            articleData: nextProps.articleData
+            articleData: nextProps.articleData,
+            loader: nextProps.loader,
+            error: nextProps.error
         });
     }
 
     render() {
-        let { articleData, route } = this.state;
-        console.log(articleData);
+        let { articleData, loader, error } = this.state;
+
         return ( <
             div >
             <
@@ -43,17 +47,31 @@ class DashBoard extends React.Component {
                         p key = { article.url } > { article.description } < /p>
                     )
                 })
+            }
+
+            {
+                loader &&
+                    <
+                    Spinner animation = "border"
+                role = "status" / >
+            } {
+                error !== '' &&
+                    <
+                    p > { error } < /p>
             } <
-            /div>
+            /
+            div >
         )
     }
 }
 
 function mapStateToProps(state) {
-    console.log('11111111111111', state.dashboardReducer.articleData);
+
     return {
         route: state.headerReducer.route,
-        articleData: state.dashboardReducer.articleData
+        articleData: state.dashboardReducer.articleData,
+        loader: state.dashboardReducer.loader,
+        error: state.dashboardReducer.error
     }
 }
 

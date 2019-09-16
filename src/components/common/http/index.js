@@ -10,6 +10,9 @@ function http(url, method, data) {
             } else {
                 console.log('failed');
             }
+        }).catch((error) => {
+            console.log('error', error.response.statusText);
+            reject(error.response.statusText);
         })
     })
 }

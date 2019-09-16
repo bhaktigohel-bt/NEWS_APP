@@ -11,8 +11,8 @@ function http(url, method, data) {
                 console.log('failed');
             }
         }).catch((error) => {
-            console.log('error', error.response.statusText);
-            reject(error.response.statusText);
+            // console.log('error', error.response.data.message);
+            reject(error.response.data.message);
         })
     })
 }

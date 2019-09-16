@@ -34,6 +34,10 @@ class DashBoard extends React.Component {
         });
     }
 
+    componentDidMount() {
+        this.props.newsApi('everything');
+    }
+
     render() {
         let { articleData, loader, error } = this.state;
 
@@ -57,7 +61,7 @@ class DashBoard extends React.Component {
             } {
                 error !== '' &&
                     <
-                    p > { error } < /p>
+                    div > { error } < /div>
             } <
             /
             div >

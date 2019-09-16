@@ -10,7 +10,7 @@ class Header extends React.Component {
     constructor() {
         super();
         this.state = {
-            route: 'Everything',
+            route: 'everything',
         }
     }
 
@@ -40,7 +40,7 @@ class Header extends React.Component {
             activeKey = { route }
             onSelect = { k => this.HandleRoute(k) } >
             <
-            Tab eventKey = "Everything"
+            Tab eventKey = "everything"
             title = "EveryThing" >
             EveryThing <
             /Tab> <
@@ -48,7 +48,7 @@ class Header extends React.Component {
             title = "Top-Head-Lines" >
             Top - Head - Lines <
             /Tab> <
-            Tab eventKey = "Sources"
+            Tab eventKey = "sources"
             title = "Sources" >
             Sources <
             /Tab> < /

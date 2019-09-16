@@ -1,4 +1,4 @@
-import { asyncActionNames } from '../common/ActionCreator';
+import { asyncActionNames } from '../../services/ActionCreator';
 const path = asyncActionNames("PATH");
 const INITIAL_STATE = { error: 0, route: 'Everything' };
 

@@ -1,4 +1,4 @@
-import { asyncActionNames } from '../common/ActionCreator';
+import { asyncActionNames } from '../../services/ActionCreator';
 const request = asyncActionNames("REQUEST");
 const loader = asyncActionNames("LOADER");
 const error = asyncActionNames("ERROR");

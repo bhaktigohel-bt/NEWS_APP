@@ -1,5 +1,5 @@
-import { asyncActionNames, buildAsyncActions } from '../common/ActionCreator';
-import { http } from '../common/http';
+import { asyncActionNames, buildAsyncActions } from '../../services/ActionCreator';
+import { http } from '../../services/http';
 
 const request = asyncActionNames("REQUEST");
 const requestActions = buildAsyncActions(request);

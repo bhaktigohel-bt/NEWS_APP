@@ -1,4 +1,4 @@
-import { asyncActionNames, buildAsyncActions } from '../common/ActionCreator';
+import { asyncActionNames, buildAsyncActions } from '../../services/ActionCreator';
 const path = asyncActionNames("PATH");
 const pathActions = buildAsyncActions(path);
 

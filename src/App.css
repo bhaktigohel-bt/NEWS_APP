@@ -9,3 +9,16 @@
     height: 70px;
     display: flex;
 }
+
+.card-link {
+    color: black
+}
+
+.card-body a:hover {
+    text-decoration: underline;
+    color: black
+}
+
+.nav-link {
+    color: black
+}

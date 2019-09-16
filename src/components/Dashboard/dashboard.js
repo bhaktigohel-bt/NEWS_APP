@@ -3,7 +3,8 @@ import { Header } from '../Header';
 import { bindActionCreators } from 'redux';
 import * as actions from './dashBoardActions';
 import { connect } from 'react-redux';
-import { Spinner } from 'react-bootstrap';
+import { Spinner, Card } from 'react-bootstrap';
+import Masonary from 'react-masonry-component';
 class DashBoard extends React.Component {
     constructor() {
         super();
@@ -42,21 +43,29 @@ class DashBoard extends React.Component {
         let { articleData, loader, error } = this.state;
 
         return ( <
-            div >
-            <
-            Header / > {
-                articleData &&
-                articleData.map((article) => {
-                    return ( <
-                        p key = { article.url } > { article.description } < /p>
-                    )
-                })
-            }
-
-            {
+                div >
+                <
+                Header / > < Masonary > {
+                    articleData &&
+                    articleData.map((article) => {
+                        return ( <
+                            Card style = {
+                                { width: '20rem', margin: '5px', padding: '5px' }
+                            }
+                            key = { article.id } >
+                            <
+                            Card.Body >
+                            <
+                            Card.Link href = { article.url } > { article.description } <
+                            /Card.Link> < /Card.Body > <
+                            /Card>
+                        )
+                    })
+                } <
+                /Masonary> {
                 loader &&
-                    <
-                    Spinner animation = "border"
+                <
+                Spinner animation = "border"
                 role = "status" / >
             } {
                 error !== '' &&
@@ -64,9 +73,9 @@ class DashBoard extends React.Component {
                     div > { error } < /div>
             } <
             /
-            div >
-        )
-    }
+        div >
+    )
+}
 }
 
 function mapStateToProps(state) {

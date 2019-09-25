@@ -11,8 +11,8 @@ class DashBoard extends React.Component {
     constructor() {
         super();
         this.state = {
-            error: '',
-            route: "",
+            error: "",
+            route: "everything",
             loader: false,
             articleData: []
         }
@@ -44,40 +44,34 @@ class DashBoard extends React.Component {
     render() {
         let { articleData, loader, error } = this.state;
 
-        return ( <
-                div >
-                <
-                Header / > < Masonary > {
-                    articleData &&
-                    articleData.map((article) => {
-                        return ( <
-                            Card style = {
-                                { width: '20rem', margin: '5px', padding: '5px' }
-                            }
-                            key = { article.id } >
-                            <
-                            Card.Body >
-                            <
-                            Card.Link href = { article.url } > { article.description } <
-                            /Card.Link> < /Card.Body > <
-                            /Card>
-                        )
-                    })
-                } <
-                /Masonary> {
-                loader &&
-                <
-                Spinner animation = "border"
-                role = "status" / >
-            } {
-                error !== '' &&
-                    <
-                    div > { error } < /div>
-            } <
-            /
-        div >
-    )
-}
+        return (
+            <>
+                <Header/>
+                <Masonary style={{  marginTop: '30px' }}>
+                    {
+                        articleData &&
+                        articleData.map((article) => {
+                            return (
+                                <Card style={{ width: '20rem', margin: '5px', padding: '5px' }} key={article.id} >
+                                    <Card.Body >
+                                        <Card.Link href={article.url} > {article.description} </Card.Link>
+                                    </Card.Body>
+                                </Card>
+                            )
+                        })
+                    }
+                </Masonary>
+                {loader &&
+                    <div style={{'textAlign': 'center'}} >
+                        <Spinner animation="border" role="status" />
+                    </div>
+                }
+                {error !== '' &&
+                    <div style={{margin: '30px 10px 10px 10px' ,padding : "1px"}}> {error} </div>
+                }
+            </>
+        )
+    }
 }
 
 function mapStateToProps(state) {
@@ -91,8 +85,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return {...bindActionCreators({...actions }, dispatch) }
-
+    return { ...bindActionCreators({ ...actions }, dispatch) }
 }
 
 DashBoard = connect(mapStateToProps, mapDispatchToProps)(DashBoard);

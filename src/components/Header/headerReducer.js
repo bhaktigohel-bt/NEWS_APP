@@ -1,6 +1,6 @@
 import { asyncActionNames } from '../../services/ActionCreator';
 const path = asyncActionNames("PATH");
-const INITIAL_STATE = { error: 0, route: 'Everything' };
+const INITIAL_STATE = { error: 0, route: 'everything' };
 
 let headerReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {

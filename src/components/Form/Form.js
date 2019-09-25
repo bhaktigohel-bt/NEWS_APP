@@ -1,6 +1,4 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form';
-
 const aol = value =>
     value && /.+@aol\.com/.test(value) ?
     'Really? You still use AOL for your email?' : undefined;
@@ -11,15 +9,30 @@ const maxValue = max => value =>
 
 const maxValue20 = maxValue(20);
 
-// const inputField =
-
-//     class inputField extends React.Component {
-
-
-//     }
-
-// class DropDown extends React.Component {
-
-// }
-
-// export { inputField, DropDown };
+const inputField = ({ input, label, type, meta: { touched, error, warning } }) => ( 
+    <>
+        <label className="sr-only">{label}</label>
+        <input className="form-control form-control-sm"
+        {...input }
+        placeholder = { label }
+        type = { type }
+        /> 
+        { touched && ((error && <span> { error } </span> ) || (warning && <span> { warning } </span> )) } 
+    </>
+)
+const selectField = ({ input, type, label, options, optionName, optionValue, defaultValue, meta: { touched, error }, ...custom }) => ( 
+    <div>
+        <label id = { label } > { label } </label> 
+        <select native input = { <input id = { label }/>} error = { touched && !!error } {...input } {...custom } >
+            <option value = "" > </option> 
+            {options.map(d => {
+                return ( 
+                    <option key = { d[optionValue] } value = { d[optionValue] } > { d[optionName] } </option>
+                    )
+                })
+            } 
+        </select> 
+        {/* {(touched && error) ? <FormHelperText error > { error } </FormHelperText>: ''}  */}
+    </div>    
+)
+export { inputField, selectField };

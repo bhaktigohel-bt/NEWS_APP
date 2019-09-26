@@ -22,3 +22,14 @@
 .nav-link {
     color: black
 }
+.displayBlock {
+    display: inline;
+}
+
+.margin-5{
+    margin: 5px
+}
+
+.padding-5 {
+    padding: 5px
+}
